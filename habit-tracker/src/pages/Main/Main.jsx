@@ -23,6 +23,14 @@ const initialHabits = [
 ]
 const Main = () => {
     const [habits, setHabits] = useState(initialHabits)
+    const [form, setForm] = useState({
+        habitName: "",
+        frequency: "daily",
+        notificationTime: "07:00"
+    })
+    const handleFormChange = (e) => {
+
+    }
     return (
         <div className="container">
             <header>
@@ -32,7 +40,7 @@ const Main = () => {
 
             <Stats habits={habits}/>
 
-            <HabitForm />
+            <HabitForm form={form} handleFormChange={handleFormChange} />
 
             <div className="habits-section">
                 <h2>📋 Today's Habits</h2>
