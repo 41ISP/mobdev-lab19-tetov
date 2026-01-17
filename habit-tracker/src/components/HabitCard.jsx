@@ -1,4 +1,4 @@
-const HabitCard = ({name, notificationTime, frequency, color, isToday, streak}) => {
+const HabitCard = ({name, notificationTime, frequency, color, isToday, streak, toggleToday}) => {
     return (
         <div className="habit-card">
                     <div className="habit-info">
@@ -16,7 +16,7 @@ const HabitCard = ({name, notificationTime, frequency, color, isToday, streak}) 
                     </div>
                     <div className="habit-actions">
                         <div className="streak-badge">🔥 {streak} days</div>
-                        <button className={`check-btn${isToday ? " completed" : ""}`}>{isToday ? "✓" : "○"}</button>
+                        <button onClick={toggleToday} className={`check-btn${isToday ? " completed" : ""}`}>{isToday ? "✓" : "○"}</button>
                     </div>
                 </div>
     )

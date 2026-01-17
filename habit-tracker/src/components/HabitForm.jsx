@@ -1,6 +1,5 @@
 const HabitForm = ({ form, handleFormChange, handleFormSubmit }) => {
     const handleSubmit = (e) => {
-        alert(123)
         e.preventDefault()
         handleFormSubmit()
     }
