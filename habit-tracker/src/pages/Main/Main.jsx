@@ -6,26 +6,7 @@ import Stats from "../../components/Stats"
 import { nanoid } from "nanoid"
 import {useNavigate} from "react-router-dom"
 import { getObject, setObject } from "../../utils/storage"
-const initialHabits = [
-    {
-        id: nanoid(),
-        name: "Изучить React",
-        notificationTime: "7:00PM",
-        frequency: "daily",
-        streak: 9,
-        isToday: true,
-        color: "green"
-    },
-    {
-        id: nanoid(),
-        name: "Почитать книжку",
-        notificationTime: "9:00PM",
-        frequency: "weekly",
-        streak: 100,
-        isToday: false,
-        color: "red"
-    }
-]
+
 const Main = () => {
     const [habits, setHabits] = useState([])
     const navigate = useNavigate()
@@ -54,15 +35,19 @@ const Main = () => {
             streak: 0,
             isToday: false,
             color: "red",
-            startDate: new Date()
+            startDate: new Date(new Date().setDate(new Date().getDate()-4)),
+            history: []
         }
         setHabits((val) => [...val, newHabit])
     }
     const toggleToday = (id) => {
         const oldHabit = habits.find((el) => el.id === id)
+        const newHistory =!oldHabit.isToday ? [...oldHabit.history, new Date()] : 
+        [...oldHabit.history.slice(0, oldHabit.history.length - 1 )]
         const newHabit = {
             ...oldHabit,
             isToday: !oldHabit.isToday,
+            history: newHistory,
             streak: oldHabit.isToday ? oldHabit.streak - 1 : oldHabit.streak + 1
         }
         setHabits((state) => state.map((el) => el.id === id ? newHabit : el))
