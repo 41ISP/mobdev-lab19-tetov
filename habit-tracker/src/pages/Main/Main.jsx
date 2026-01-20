@@ -35,7 +35,7 @@ const Main = () => {
             streak: 0,
             isToday: false,
             color: "red",
-            startDate: new Date(new Date().setDate(new Date().getDate()-4)),
+            startDate: new Date(),
             history: []
         }
         setHabits((val) => [...val, newHabit])
@@ -58,7 +58,7 @@ const Main = () => {
     return (
         <div className="container">
             <header>
-                <h1>🎯 Smart Habit Tracker</h1>
+                <h1>🐷 Smart Habit Tracker</h1>
                 <p className="subtitle">Build better habits, one day at a time</p>
             </header>
 

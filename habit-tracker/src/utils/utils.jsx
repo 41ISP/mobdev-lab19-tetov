@@ -20,7 +20,7 @@ acc.push(callback(new Date(i)))
   }
   return acc
 }
-export const checkCompleted = (date) => {
+export const checkCompleted = (date, arr) => {
   const check = new Date(date).toDateString()
   return arr.some((el) => 
   new Date(el).toDateString() == check)

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { getObject } from "../../utils/storage"
 import { formatDate } from "../../utils/formatters"
 import DaysList from "../../components/DaysList"
+import { daysSince } from "../../utils/utils"
 
 const History = () => {
     const { id } = useParams()
@@ -53,16 +54,14 @@ const History = () => {
                             <div class="stat-box-value">{habit.streak}</div>
                             <div class="stat-box-label">Current Streak</div>
                         </div>
+                       
+                        
                         <div class="stat-box">
-                            <div class="stat-box-value">23</div>
-                            <div class="stat-box-label">Best Streak</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-box-value">89%</div>
+                            <div class="stat-box-value">{Math.round(habit.history.length / (daysSince(habit.startDate) + 1) * 100)}%</div>
                             <div class="stat-box-label">Success Rate</div>
                         </div>
-                        <div class="stat-box">
-                            <div class="stat-box-value">47</div>
+                        <div class="stat-box"> 
+                            <div class="stat-box-value">{daysSince(habit.startDate)}</div>
                             <div class="stat-box-label">Total Days</div>
                         </div>
                     </div>
@@ -73,7 +72,7 @@ const History = () => {
                     <div class="progress-bar-container">
                         <div class="progress-label">
                             <span>Completion Rate</span>
-                            <span><strong>27/30 days</strong></span>
+                            <span><strong>{habit.history.length}/{daysSince(habit.startDate) + 1}</strong></span>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill"></div>
@@ -84,13 +83,13 @@ const History = () => {
                             <div
                                 class="legend-color"
                             ></div>
-                            <span>Completed (27 days)</span>
+                            <span>Complited {habit.history.length} days</span>
                         </div>
                         <div class="legend-item">
                             <div
                                 class="legend-color"
                             ></div>
-                            <span>Missed (3 days)</span>
+                            <span>Missed ({(daysSince(habit.startDate)+1) - habit.history.length} days)</span>
                         </div>
                     </div>
                 </div>
